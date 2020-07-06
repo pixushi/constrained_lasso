@@ -9,4 +9,4 @@ https://academic.oup.com/biomet/article-abstract/101/4/785/1775476?redirectedFro
 
 *ConstrLasso.R*: functions for estimation of linearly constrained lasso regression.
 
-*testcode.R*: test codes that simulate a toy dataset and perform linearly constrained lasso regression.
+*testcode.R*: showcase of the usage of our method using a simulated toy example.
