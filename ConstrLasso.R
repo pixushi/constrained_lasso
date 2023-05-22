@@ -217,7 +217,7 @@ ConstrLassoCrossVal <- function(y, x, C=NULL, lambda=NULL, nlam=20, intercept=TR
         err[,j] <- colMeans((xtest%*%res$bet-res$int-as.vector(ytest))^2)
     }
     cvm <- rowMeans(err)
-    cvsd <- apply(err,1,sd)
+    cvsd <- apply(err,1,sd)/sqrt(nfolds)
     # fit with all lambda
     res.fit <- do.call(method, list(y=y, x=x, C=C, lambda=lambda, intercept=FALSE, scaling=FALSE, maxiter=maxiter, tol=tol))
     bet <- res.fit$bet
