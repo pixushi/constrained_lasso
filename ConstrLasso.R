@@ -229,7 +229,8 @@ ConstrLassoCrossVal <- function(y, x, C=NULL, lambda=NULL, nlam=20, intercept=TR
     if (intercept){
         int <- y.mean - as.vector(x.mean%*%bet)
     }  
-    
-    return(list(lambda=lambda, int=int, bet=bet, cvm=cvm, cvsd=cvsd))
+    sel <- min(which(cvm <= min(cvm+cvsd)))
+    betsel <- bet[,sel]
+    return(list(lambda=lambda, int=int, bet=bet, cvm=cvm, cvsd=cvsd, betsel=betsel))
 }
 
