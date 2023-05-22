@@ -175,8 +175,8 @@ ConstrLasso <- function(y, x, C=NULL, lambda=NULL, nlam=20, intercept=TRUE, scal
 
 
 
-cv.func <- function(method="ConstrLasso", y, x, C=NULL, lambda=NULL, nlam=20, intercept=TRUE, scaling=TRUE, nfolds=5, maxiter=1000, tol=1e-8){
-    if(is.na(match(method, c("ConstrLasso")))) stop("input method is wrong!")
+ConstrLassoCrossVal <- function(y, x, C=NULL, lambda=NULL, nlam=20, intercept=TRUE, scaling=TRUE, nfolds=5, maxiter=1000, tol=1e-8){
+    method <- "ConstrLasso"
     n <- nrow(x)
     p <- ncol(x)
     if(is.null(C)) C <- matrix(0,p,1)
