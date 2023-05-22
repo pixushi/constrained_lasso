@@ -15,7 +15,7 @@ t(C)%*%bet0
 res1 <- ConstrLasso(y,x,C)
 t(C)%*%res1$bet
 
-res2 <- cv.func('ConstrLasso',y=y,x=x,C=C)
+res2 <- ConstrLassoCrossVal(y=y,x=x,C=C)
 t(C)%*%res1$bet
 plot(bet0,res2$bet[,which.min(res2$cvm)])
 plot(res2$cvm)
