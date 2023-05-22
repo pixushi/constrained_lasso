@@ -181,6 +181,8 @@ ConstrLassoCrossVal <- function(y, x, C=NULL, lambda=NULL, nlam=20, intercept=TR
     p <- ncol(x)
     if(is.null(C)) C <- matrix(0,p,1)
     
+    y.ori <- y
+    x.ori <- x
     if (intercept){
         y.mean <- mean(y)
         y <- y - y.mean
@@ -230,7 +232,11 @@ ConstrLassoCrossVal <- function(y, x, C=NULL, lambda=NULL, nlam=20, intercept=TR
         int <- y.mean - as.vector(x.mean%*%bet)
     }  
     sel <- min(which(cvm <= min(cvm+cvsd)))
-    betsel <- bet[,sel]
-    return(list(lambda=lambda, int=int, bet=bet, cvm=cvm, cvsd=cvsd, betsel=betsel))
+    bet.sel <- bet[,sel]
+    int.sel <- int[sel]
+    Rsq <- 1 - sum((int.sel+x.ori%*%bet.sel - y.ori)^2) / sum((y.ori-mean(y.ori))^2)
+    return(list(lambda=lambda, int=int, bet=bet, cvm=cvm, cvsd=cvsd, 
+        int.sel=int.sel, bet.sel=bet.sel, sel=sel, Rsq.sel=Rsq, 
+        x=x.ori, y=y.ori))
 }
 
