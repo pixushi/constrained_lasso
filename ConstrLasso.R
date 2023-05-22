@@ -221,6 +221,7 @@ ConstrLassoCrossVal <- function(y, x, C=NULL, lambda=NULL, nlam=20, intercept=TR
     # fit with all lambda
     res.fit <- do.call(method, list(y=y, x=x, C=C, lambda=lambda, intercept=FALSE, scaling=FALSE, maxiter=maxiter, tol=tol))
     bet <- res.fit$bet
+    rownames(bet) <- colnames(xmat)
     if (scaling){
         bet <- bet/x.sd
     }
